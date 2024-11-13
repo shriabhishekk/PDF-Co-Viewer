@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Co-Viewer</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id = "main">
+        <div id="heading">PDF Co-Viewer</div>
+        <div id="pdfViewer">
+            <canvas id="pdfCanvas"></canvas>
+        </div>
+        <div id="controls">
+            <button id="prevPage">Previous</button>
+            <span id="pageInfo">Page <span id="pageNum"></span></span>
+            <button id="nextPage">Next</button>
+        </div>
+    </div>
+   
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"
+      integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.socket.io/4.8.0/socket.io.min.js"
+      integrity="sha384-OoIbkvzsFFQAG88r+IqMAjyOtYDPGO0cqK5HF5Uosdy/zUEGySeAzytENMDynREd"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/script.js"></script>
+  </body>
+</html>

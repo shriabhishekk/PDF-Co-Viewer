@@ -1,0 +1,95 @@
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient Background */
+    color: #333;
+}
+
+/* Centering the main content */
+#main {
+    text-align: center;
+    background: #fff; /* Set a solid white background for the content */
+    padding: 40px 60px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#heading {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+#pdfViewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#pdfCanvas {
+    max-height: 75vh; /* Adjust based on screen size */
+    max-width: 90vw;
+    border: 3px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+
+#pageInfo {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+#prevPage, #nextPage {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#prevPage:hover, #nextPage:hover {
+    background-color: #2980b9;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+#prevPage:disabled, #nextPage:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+#prevPage:disabled:hover, #nextPage:disabled:hover {
+    background-color: #bdc3c7;
+    box-shadow: none;
+    transform: none;
+}
