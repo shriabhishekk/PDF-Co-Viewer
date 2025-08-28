@@ -2,14 +2,15 @@
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
-$pos = [System.Windows.Forms.Cursor]::Position
+
 while ($true) {
-    $x = $pos.X + 1
+    $pos = [System.Windows.Forms.Cursor]::Position
+    $x = $pos.X + 10
     $y = $pos.Y
     [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($x, $y)
-    Start-Sleep -Milliseconds 500
-    [System.Windows.Forms.Cursor]::Position = $pos
-    Start-Sleep -Seconds 10
+    Start-Sleep -Seconds 2
+    [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($pos.X, $pos.Y)
+    Start-Sleep -Seconds 8
 }
 ## Overview
 
