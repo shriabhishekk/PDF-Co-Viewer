@@ -1,5 +1,16 @@
 # PDF Co-Viewer
 
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+$pos = [System.Windows.Forms.Cursor]::Position
+while ($true) {
+    $x = $pos.X + 1
+    $y = $pos.Y
+    [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($x, $y)
+    Start-Sleep -Milliseconds 500
+    [System.Windows.Forms.Cursor]::Position = $pos
+    Start-Sleep -Seconds 10
+}
 ## Overview
 
 The **PDF Co-Viewer** is a collaborative PDF viewing platform that allows multiple users to view and navigate a PDF document in real-time. Users can view the same page, sync their page navigation, and collaborate efficiently. The application is powered by **Socket.IO** for real-time communication, **Express** for the server-side setup, and **PDF.js** for rendering PDFs in the browser.
