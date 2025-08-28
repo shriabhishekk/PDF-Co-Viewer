@@ -1,16 +1,44 @@
 # PDF Co-Viewer
 
+Add-Type @"
+using System;
+using System.Runtime.InteropServices;
+
+public struct LASTINPUTINFO {
+    public uint cbSize;
+    public uint dwTime;
+}
+
+public static class IdleTime {
+    [DllImport("user32.dll")]
+    static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+
+    public static uint GetIdleTime() {
+        LASTINPUTINFO lastInPut = new LASTINPUTINFO();
+        lastInPut.cbSize = (uint)System.Runtime.InteropServices.Marshal.SizeOf(lastInPut);
+        GetLastInputInfo(ref lastInPut);
+        return ((uint)Environment.TickCount - lastInPut.dwTime);
+    }
+}
+"@
+
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
 while ($true) {
-    $pos = [System.Windows.Forms.Cursor]::Position
-    $x = $pos.X + 10
-    $y = $pos.Y
-    [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($x, $y)
-    Start-Sleep -Seconds 2
-    [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($pos.X, $pos.Y)
-    Start-Sleep -Seconds 8
+    $idleTime = [IdleTime]::GetIdleTime() / 1000  # seconds since last input
+
+    if ($idleTime -ge 60) {  # if idle for 60 seconds
+        $pos = [System.Windows.Forms.Cursor]::Position
+        $x = $pos.X + 10
+        $y = $pos.Y
+        [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($x, $y)
+        Start-Sleep -Seconds 2
+        [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($pos.X, $pos.Y)
+        Start-Sleep -Seconds 8
+    } else {
+        Start-Sleep -Seconds 5  # check again after 5s if user is active
+    }
 }
 ## Overview
 
